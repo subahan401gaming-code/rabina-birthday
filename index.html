@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rabina 💖 Final Boss</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif;}
+body{
+    overflow:hidden;
+    color:white;
+}
+
+/* 🌌 Galaxy Background */
+body::before{
+    content:"";
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:radial-gradient(circle at center,#1a0026,#000);
+    z-index:-2;
+}
+
+/* ✨ Stars */
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:white;
+    animation:twinkle 2s infinite alternate;
+}
+@keyframes twinkle{
+    from{opacity:0.2;}
+    to{opacity:1;}
+}
+
+/* 🎬 Intro */
+#intro{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:black;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    z-index:10;
+}
+#intro button{
+    padding:15px 30px;
+    border:none;
+    border-radius:30px;
+    background:#ff4b2b;
+    color:white;
+    font-size:18px;
+}
+
+/* 💎 Card */
+.card{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(20px);
+    padding:25px;
+    border-radius:25px;
+    text-align:center;
+    width:90%;
+    max-width:400px;
+    box-shadow:0 0 40px rgba(255,0,150,0.5);
+    display:none;
+}
+
+h1{font-size:26px;}
+#typing{height:25px;color:#ffd1dc;margin:10px;}
+
+/* Buttons */
+button{
+    margin:5px;
+    padding:10px 20px;
+    border:none;
+    border-radius:20px;
+    background:linear-gradient(45deg,#ff416c,#ff4b2b);
+    color:white;
+}
+
+/* Image */
+img{
+    width:100%;
+    border-radius:15px;
+    margin-top:10px;
+}
+
+/* Popup */
+.popup{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.7);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.popup-content{
+    background:#ff416c;
+    padding:30px;
+    border-radius:20px;
+    animation:zoom 0.5s;
+}
+@keyframes zoom{
+    from{transform:scale(0);}
+    to{transform:scale(1);}
+}
+
+/* 💖 Hearts */
+.heart{
+    position:absolute;
+    color:pink;
+    animation:float 5s linear infinite;
+}
+@keyframes float{
+    from{transform:translateY(100vh);}
+    to{transform:translateY(-10vh);}
+}
+
+/* 🎉 Confetti */
+.confetti{
+    position:absolute;
+    width:8px;
+    height:8px;
+    animation:fall 3s linear;
+}
+@keyframes fall{
+    to{transform:translateY(100vh);}
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎬 Intro -->
+<div id="intro">
+    <h1>💖 Special For Rabina 💖</h1>
+    <button onclick="start()">Start Surprise 🎁</button>
+</div>
+
+<!-- 💎 Main -->
+<div class="card" id="main">
+    <h1>🎂 Happy Birthday RABINA 🎂</h1>
+    <div id="typing"></div>
+
+    <button onclick="wish()">💌 Wishes</button>
+    <button onclick="musicToggle()">🎵 Music</button>
+    <button onclick="blast()">🎉 Blast</button>
+
+    <div id="wishBox"></div>
+
+    <img id="slide" src="https://picsum.photos/400/300?1">
+
+    <input type="file" onchange="loadPhoto(event)">
+</div>
+
+<!-- 💘 Popup -->
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <h2>💖 I Love You Rabina 💖</h2>
+        <button onclick="closePop()">Close</button>
+    </div>
+</div>
+
+<audio id="music" loop>
+<source src="https://www2.cs.uic.edu/~i101/SoundFiles/HappyBirthday.wav">
+</audio>
+
+<script>
+
+/* 🌟 Stars */
+for(let i=0;i<100;i++){
+ let s=document.createElement("div");
+ s.className="star";
+ s.style.left=Math.random()*100+"vw";
+ s.style.top=Math.random()*100+"vh";
+ document.body.appendChild(s);
+}
+
+/* 🎬 Start */
+function start(){
+ document.getElementById("intro").style.display="none";
+ document.getElementById("main").style.display="block";
+}
+
+/* ✍️ Typing */
+let txt="তুমি আমার জীবনের সবচেয়ে সুন্দর অনুভূতি 💖";
+let i=0;
+function type(){
+ if(i<txt.length){
+  document.getElementById("typing").innerHTML+=txt[i];
+  i++; setTimeout(type,40);
+ }
+}
+type();
+
+/* 💌 Wishes */
+const w=["শুভ জন্মদিন 🎉","অনেক ভালোবাসা 💖","সব স্বপ্ন পূরণ হোক ✨","সবসময় পাশে আছি ❤️"];
+function wish(){
+ let r=w[Math.floor(Math.random()*w.length)];
+ document.getElementById("wishBox").innerText=r;
+}
+
+/* 🎵 Music */
+let m=document.getElementById("music");
+function musicToggle(){
+ if(m.paused){m.play();}else{m.pause();}
+}
+
+/* 💥 Blast */
+function blast(){
+ for(let i=0;i<60;i++){
+  let c=document.createElement("div");
+  c.className="confetti";
+  c.style.left=Math.random()*100+"vw";
+  c.style.background="hsl("+Math.random()*360+",100%,50%)";
+  document.body.appendChild(c);
+  setTimeout(()=>c.remove(),3000);
+ }
+}
+
+/* 💖 Hearts */
+setInterval(()=>{
+ let h=document.createElement("div");
+ h.className="heart";
+ h.innerText="💖";
+ h.style.left=Math.random()*100+"vw";
+ document.body.appendChild(h);
+ setTimeout(()=>h.remove(),5000);
+},300);
+
+/* 📸 Slideshow */
+let imgs=[
+"https://picsum.photos/400/300?1",
+"https://picsum.photos/400/300?2",
+"https://picsum.photos/400/300?3"
+];
+let idx=0;
+setInterval(()=>{
+ idx=(idx+1)%imgs.length;
+ document.getElementById("slide").src=imgs[idx];
+},3000);
+
+/* 📸 Upload */
+function loadPhoto(e){
+ document.getElementById("slide").src=URL.createObjectURL(e.target.files[0]);
+}
+
+/* 💘 Popup */
+function closePop(){
+ document.getElementById("popup").style.display="none";
+}
+
+</script>
+
+</body>
+</html>
