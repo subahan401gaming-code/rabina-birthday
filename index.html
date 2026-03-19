@@ -1,262 +1,224 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rabina 💖 Final Boss</title>
+<title>Happy Birthday Rabina 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif;}
 body{
-    overflow:hidden;
-    color:white;
+margin:0;
+font-family:'Poppins',sans-serif;
+background:linear-gradient(135deg,#ff4e50,#f9d423);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+overflow:hidden;
+color:white;
 }
 
-/* 🌌 Galaxy Background */
-body::before{
-    content:"";
-    position:fixed;
-    width:100%;
-    height:100%;
-    background:radial-gradient(circle at center,#1a0026,#000);
-    z-index:-2;
+/* CARD */
+.container{
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(15px);
+padding:30px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 0 40px rgba(0,0,0,0.4);
 }
 
-/* ✨ Stars */
-.star{
-    position:absolute;
-    width:2px;
-    height:2px;
-    background:white;
-    animation:twinkle 2s infinite alternate;
-}
-@keyframes twinkle{
-    from{opacity:0.2;}
-    to{opacity:1;}
+/* PHOTO */
+.photo{
+width:120px;
+height:120px;
+border-radius:50%;
+margin:auto;
+background:url('https://drive.google.com/file/d/17WSGDqC2-nsI-k7jNwoqTSoHuogCUUdq/view?usp=drivesdk.jpg') center/cover;
+border:3px solid white;
 }
 
-/* 🎬 Intro */
-#intro{
-    position:fixed;
-    width:100%;
-    height:100%;
-    background:black;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-    z-index:10;
-}
-#intro button{
-    padding:15px 30px;
-    border:none;
-    border-radius:30px;
-    background:#ff4b2b;
-    color:white;
-    font-size:18px;
-}
+/* TEXT */
+h1{font-size:2.5em;}
+.name{color:yellow;}
 
-/* 💎 Card */
-.card{
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    background:rgba(255,255,255,0.08);
-    backdrop-filter:blur(20px);
-    padding:25px;
-    border-radius:25px;
-    text-align:center;
-    width:90%;
-    max-width:400px;
-    box-shadow:0 0 40px rgba(255,0,150,0.5);
-    display:none;
-}
-
-h1{font-size:26px;}
-#typing{height:25px;color:#ffd1dc;margin:10px;}
-
-/* Buttons */
+/* BUTTON */
 button{
-    margin:5px;
-    padding:10px 20px;
-    border:none;
-    border-radius:20px;
-    background:linear-gradient(45deg,#ff416c,#ff4b2b);
-    color:white;
+margin:10px;
+padding:12px 25px;
+border:none;
+border-radius:30px;
+background:white;
+color:#ff4e50;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+}
+button:hover{
+transform:scale(1.1);
+background:gold;
 }
 
-/* Image */
-img{
-    width:100%;
-    border-radius:15px;
-    margin-top:10px;
-}
-
-/* Popup */
+/* POPUP */
 .popup{
-    position:fixed;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.7);
-    display:flex;
-    justify-content:center;
-    align-items:center;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+display:none;
+justify-content:center;
+align-items:center;
+background:rgba(0,0,0,0.7);
 }
-.popup-content{
-    background:#ff416c;
-    padding:30px;
-    border-radius:20px;
-    animation:zoom 0.5s;
+.popup-box{
+background:white;
+color:black;
+padding:25px;
+border-radius:15px;
+animation:zoom .3s;
 }
 @keyframes zoom{
-    from{transform:scale(0);}
-    to{transform:scale(1);}
+from{transform:scale(0.5);}
+to{transform:scale(1);}
 }
 
-/* 💖 Hearts */
+/* HEARTS */
 .heart{
-    position:absolute;
-    color:pink;
-    animation:float 5s linear infinite;
+position:absolute;
+color:red;
+animation:float 5s linear infinite;
 }
 @keyframes float{
-    from{transform:translateY(100vh);}
-    to{transform:translateY(-10vh);}
+0%{transform:translateY(100vh);}
+100%{transform:translateY(-10vh);}
 }
 
-/* 🎉 Confetti */
-.confetti{
-    position:absolute;
-    width:8px;
-    height:8px;
-    animation:fall 3s linear;
+/* FIREWORK */
+.spark{
+position:absolute;
+width:5px;
+height:5px;
+background:white;
+border-radius:50%;
+animation:boom 1s linear forwards;
 }
-@keyframes fall{
-    to{transform:translateY(100vh);}
+@keyframes boom{
+to{
+transform:translate(var(--x),var(--y));
+opacity:0;
+}
+}
+
+/* MUSIC BUTTON */
+.music{
+position:fixed;
+bottom:20px;
+right:20px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- 🎬 Intro -->
-<div id="intro">
-    <h1>💖 Special For Rabina 💖</h1>
-    <button onclick="start()">Start Surprise 🎁</button>
+<div class="container">
+
+<div class="photo"></div>
+
+<h1>🎉 Happy Birthday <span class="name">Rabina</span> 🎂</h1>
+<p>Wishing you endless happiness & love 💖</p>
+
+<button onclick="showLove()">💌 Love</button>
+<button onclick="wish()">🎁 Wish</button>
+
 </div>
 
-<!-- 💎 Main -->
-<div class="card" id="main">
-    <h1>🎂 Happy Birthday RABINA BABY 🎂</h1>
-    <div id="typing"></div>
-
-    <button onclick="wish()">💌 Wishes</button>
-    <button onclick="musicToggle()">🎵 Music</button>
-    <button onclick="blast()">🎉 Blast</button>
-
-    <div id="wishBox"></div>
-
-    <img id="slide" src="https://picsum.photos/400/300?1">
-
-    <input type="file" onchange="loadPhoto(event)">
+<!-- LOVE POPUP -->
+<div class="popup" id="lovePopup">
+<div class="popup-box">
+<h2>I Love You Rabina BABY ❤️</h2>
+<p>You are my everything 💖</p>
+<button onclick="closeLove()">Close</button>
+</div>
 </div>
 
-<!-- 💘 Popup -->
-<div id="popup" class="popup">
-    <div class="popup-content">
-        <h2>💖 I Love You Rabina 💖</h2>
-        <button onclick="closePop()">Close</button>
-    </div>
+<!-- WISH POPUP -->
+<div class="popup" id="wishPopup">
+<div class="popup-box">
+<h2>🎁 Special Wish</h2>
+<p id="wishText"></p>
+<button onclick="closeWish()">Close</button>
+</div>
 </div>
 
+<!-- MUSIC -->
 <audio id="music" loop>
-<source src="https://www2.cs.uic.edu/~i101/SoundFiles/HappyBirthday.wav">
+<source src="https://www.bensound.com/bensound-music/bensound-birthday.mp3">
 </audio>
+
+<button class="music" onclick="toggleMusic()">🎵</button>
 
 <script>
 
-/* 🌟 Stars */
-for(let i=0;i<100;i++){
- let s=document.createElement("div");
- s.className="star";
- s.style.left=Math.random()*100+"vw";
- s.style.top=Math.random()*100+"vh";
- document.body.appendChild(s);
+// LOVE
+function showLove(){
+document.getElementById("lovePopup").style.display="flex";
+}
+function closeLove(){
+document.getElementById("lovePopup").style.display="none";
 }
 
-/* 🎬 Start */
-function start(){
- document.getElementById("intro").style.display="none";
- document.getElementById("main").style.display="block";
-}
+// WISH
+const wishes=[
+"শুভ জন্মদিন! 🎉 অনেক সুখে থাকো 💖",
+"তুমি আমার জীবনের সবচেয়ে সুন্দর মানুষ ❤️",
+"তোমার সব স্বপ্ন পূরণ হোক ✨",
+"তুমি সবসময় হাসিখুশি থাকো 😊",
+"অনেক ভালোবাসা তোমার জন্য 💝"
+];
 
-/* ✍️ Typing */
-let txt="তুমি আমার জীবনের সবচেয়ে সুন্দর অনুভূতি 💖";
-let i=0;
-function type(){
- if(i<txt.length){
-  document.getElementById("typing").innerHTML+=txt[i];
-  i++; setTimeout(type,40);
- }
-}
-type();
-
-/* 💌 Wishes */
-const w=["শুভ জন্মদিন 🎉","অনেক ভালোবাসা 💖","তোমার সব স্বপ্ন পূরণ হোক ✨","সবসময় পাশে আছি ❤️"," Love you BABY"];
 function wish(){
- let r=w[Math.floor(Math.random()*w.length)];
- document.getElementById("wishBox").innerText=r;
+let r=wishes[Math.floor(Math.random()*wishes.length)];
+document.getElementById("wishText").innerText=r;
+document.getElementById("wishPopup").style.display="flex";
+firework();
+}
+function closeWish(){
+document.getElementById("wishPopup").style.display="none";
 }
 
-/* 🎵 Music */
-let m=document.getElementById("music");
-function musicToggle(){
- if(m.paused){m.play();}else{m.pause();}
-}
-
-/* 💥 Blast */
-function blast(){
- for(let i=0;i<60;i++){
-  let c=document.createElement("div");
-  c.className="confetti";
-  c.style.left=Math.random()*100+"vw";
-  c.style.background="hsl("+Math.random()*360+",100%,50%)";
-  document.body.appendChild(c);
-  setTimeout(()=>c.remove(),3000);
- }
-}
-
-/* 💖 Hearts */
+// HEARTS
 setInterval(()=>{
- let h=document.createElement("div");
- h.className="heart";
- h.innerText="💖";
- h.style.left=Math.random()*100+"vw";
- document.body.appendChild(h);
- setTimeout(()=>h.remove(),5000);
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="❤️";
+h.style.left=Math.random()*100+"vw";
+h.style.fontSize=(Math.random()*20+10)+"px";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),5000);
 },300);
 
-/* 📸 Slideshow */
-let imgs=[
-"https://ibb.co.com/xSYpTLMz",
-"https://ibb.co.com/xSYpTLMz",
-"https://ibb.co.com/xSYpTLMz"
-];
-let idx=0;
-setInterval(()=>{
- idx=(idx+1)%imgs.length;
- document.getElementById("slide").src=imgs[idx];
-},3000);
-
-/* 📸 Upload */
-function loadPhoto(e){
- document.getElementById("slide").src=URL.createObjectURL(e.target.files[0]);
+// FIREWORK
+function firework(){
+for(let i=0;i<30;i++){
+let s=document.createElement("div");
+s.className="spark";
+s.style.left="50%";
+s.style.top="50%";
+s.style.setProperty('--x',(Math.random()*200-100)+"px");
+s.style.setProperty('--y',(Math.random()*200-100)+"px");
+document.body.appendChild(s);
+setTimeout(()=>s.remove(),1000);
+}
 }
 
-/* 💘 Popup */
-function closePop(){
- document.getElementById("popup").style.display="none";
+// MUSIC
+const music=document.getElementById("music");
+function toggleMusic(){
+if(music.paused) music.play();
+else music.pause();
 }
 
 </script>
